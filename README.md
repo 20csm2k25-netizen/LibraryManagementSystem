@@ -153,6 +153,17 @@ SELECT * FROM books LIMIT 1;
 1. Install VS Code Live Server extension
 2. Right-click `index.html` → "Open with Live Server"
 
+### Step 4: GitHub Pages Deployment
+
+The frontend can be hosted on GitHub Pages, but the Node.js backend must be deployed separately and exposed over HTTPS.
+
+1. Push the repository to GitHub.
+2. Deploy the backend to a host such as Render, Railway, or another Node.js platform.
+3. Update `frontend/config.js` with the deployed backend API URL ending in `/api`.
+4. Enable GitHub Pages in the repository settings or run the `Deploy Frontend to GitHub Pages` workflow.
+
+If you trigger the workflow manually, you can pass the backend API URL as the `backend_api_url` input so the site is deployed with the correct API endpoint.
+
 ## 👤 Test Credentials
 
 Use these credentials to test the system:

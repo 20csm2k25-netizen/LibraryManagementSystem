@@ -8,6 +8,11 @@ on:
       - 'frontend/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
+    inputs:
+      backend_api_url:
+        description: 'Backend API URL, for example https://api.example.com/api'
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -27,6 +32,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Configure frontend API URL
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.backend_api_url != '' }}
+        run: |
+          cat > frontend/config.js <<'EOF'
+          window.APP_CONFIG = {
+            API_URL: '${{ inputs.backend_api_url }}'
+          };
+          EOF
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
