@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Library Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">Digital Library</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" onclick="showPage('home'); return false;" class="nav-link">Home</a></li>
+                <li><a href="#" onclick="showPage('books'); return false;" class="nav-link">Browse Books</a></li>
+                <li><a href="#" onclick="showPage('mybooks'); return false;" class="nav-link">My Books</a></li>
+                <li><a href="#" onclick="logout(); return false;" class="nav-link logout-btn">Logout</a></li>
+            </ul>
+            <div class="user-profile" id="userProfile"></div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Auth Page -->
+        <div id="auth-page" class="page active">
+            <div class="auth-wrapper">
+                <div class="auth-container">
+                    <div class="auth-header">
+                        <div class="auth-icon">📚</div>
+                        <h1>Digital Library System</h1>
+                        <p>Professional Online Learning Platform</p>
+                    </div>
+
+                    <div class="auth-toggle">
+                        <button class="toggle-btn active" onclick="switchAuthMode('login', event)">Login</button>
+                        <button class="toggle-btn" onclick="switchAuthMode('signup', event)">Sign Up</button>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="login-form" class="auth-form active">
+                        <h2>Welcome Back</h2>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" placeholder="Enter your username" id="login-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Enter your password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large">Login</button>
+                        <p id="login-error" class="error-message"></p>
+                    </form>
+
+                    <!-- Signup Form -->
+                    <form id="signup-form" class="auth-form">
+                        <h2>Create New Account</h2>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" placeholder="Choose a username" id="signup-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="Your email" id="signup-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Your full name" id="signup-fullname" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone (Optional)</label>
+                            <input type="tel" placeholder="Your phone number" id="signup-phone">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Create a strong password" id="signup-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large">Sign Up</button>
+                        <p id="signup-error" class="error-message"></p>
+                    </form>
+                </div>
+                <div class="auth-illustration">
+                    <div class="illustration-content">
+                        <div class="book-icon">📖</div>
+                        <h3>Expand Your Knowledge</h3>
+                        <p>Access thousands of books and resources from our comprehensive library collection.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home/Dashboard Page -->
+        <div id="home-page" class="page">
+            <div class="dashboard-hero">
+                <div class="hero-content">
+                    <h1>Welcome to Your Digital Library</h1>
+                    <p id="welcomeMessage"></p>
+                    <div class="quick-stats">
+                        <div class="stat-card">
+                            <span class="stat-icon">📚</span>
+                            <h3 id="totalBooksCount">0</h3>
+                            <p>Books Available</p>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">📖</span>
+                            <h3 id="myBooksCount">0</h3>
+                            <p>Books Borrowed</p>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">⏰</span>
+                            <h3 id="dueCount">0</h3>
+                            <p>Due Soon</p>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">✅</span>
+                            <h3>3 Max</h3>
+                            <p>Borrow Limit</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-large" onclick="showPage('books'); return false;">Start Browsing</button>
+            </div>
+
+            <div class="dashboard-section">
+                <h2>📖 Currently Borrowed</h2>
+                <div id="currentBooksContainer" class="books-list">
+                    <p class="empty-state">No books currently borrowed. Start by browsing our collection!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Browse Books Page -->
+        <div id="books-page" class="page">
+            <div class="books-header">
+                <h1>📚 Browse Our Library Collection</h1>
+                <p>Explore thousands of books across multiple categories</p>
+            </div>
+
+            <div class="filters-section">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="🔍 Search by title, author, or keywords..." onkeyup="filterBooks()">
+                </div>
+                <div class="category-filters">
+                    <button class="filter-btn active" onclick="filterByCategory('all')">All</button>
+                    <button class="filter-btn" onclick="filterByCategory('Computer Science')">💻 Computer Science</button>
+                    <button class="filter-btn" onclick="filterByCategory('Business')">💼 Business</button>
+                    <button class="filter-btn" onclick="filterByCategory('Science')">🔬 Science</button>
+                    <button class="filter-btn" onclick="filterByCategory('Literature')">📖 Literature</button>
+                    <button class="filter-btn" onclick="filterByCategory('Philosophy')">🤔 Philosophy</button>
+                    <button class="filter-btn" onclick="filterByCategory('Psychology')">🧠 Psychology</button>
+                    <button class="filter-btn" onclick="filterByCategory('Self-Help')">⭐ Self-Help</button>
+                </div>
+            </div>
+
+            <div id="books-container" class="books-grid">
+                <!-- Books will be loaded here -->
+            </div>
+        </div>
+
+        <!-- My Books Page -->
+        <div id="mybooks-page" class="page">
+            <div class="mybooks-header">
+                <h1>📚 My Borrowed Books</h1>
+                <p id="borrowLimitInfo"></p>
+            </div>
+            <div id="mybooks-container" class="borrowed-books-list">
+                <!-- User's books will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Details Modal -->
+    <div id="book-modal" class="modal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modal-body">
+                <!-- Book details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
