@@ -212,12 +212,13 @@ Use these credentials to test the system:
 
 The database comes pre-loaded with:
 
-**Books (5 total):**
+**Books (100+ total):**
 1. The Prophet - Kahlil Gibran
 2. A Brief History of Time - Stephen Hawking
 3. The Great Gatsby - F. Scott Fitzgerald
 4. Introduction to Algorithms - Cormen, Leiserson, Rivest
 5. Thinking, Fast and Slow - Daniel Kahneman
+ And much more....
 
 **Users (3 total):**
 - 1 Admin account
