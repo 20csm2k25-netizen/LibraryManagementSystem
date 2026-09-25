@@ -148,7 +148,6 @@ npm install
 - One-click borrowing
 - Automatic due date (14 days)
 - Availability updates instantly
-- Success confirmation
 
 ### ↩️ Return Books
 - View all borrowed books
