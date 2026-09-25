@@ -50,7 +50,7 @@ What it covers:
 - Database table structure
 - What data gets saved
 
-**Time Required:** 10 minutes
+
 **When to use:** Want to understand how it works
 
 ---
