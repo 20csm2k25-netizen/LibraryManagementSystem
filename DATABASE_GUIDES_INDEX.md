@@ -483,6 +483,7 @@ Before submitting your assignment:
 - [ ] Documentation complete
 - [ ] Screenshots included
 - [ ] Word document prepared
+- [ ] All types of books are available at one place 
 
 ---
 
