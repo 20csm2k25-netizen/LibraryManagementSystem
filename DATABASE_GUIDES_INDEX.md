@@ -470,8 +470,11 @@ Before submitting your assignment:
 
 - [ ] Database created and working
 - [ ] User data saving to database
-- [ ] Can signup new accounts
 - [ ] Can login with new accounts
+- [ ] 1500+ books
+- [ ] User can borrows the books
+- [ ] All books are free
+- [ ] All pages are working without errors
 - [ ] Password hashing working
 - [ ] All CRUD operations working
 - [ ] Frontend looks professional
